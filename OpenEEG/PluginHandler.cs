@@ -3,28 +3,124 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
+using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace lucidcode.LucidScribe.Plugin.OpenEEG
 {
 
-    // This class is shard by OpenEEG and OpenREM to access the hardware
     public static class Device
     {
-
-        private static bool Initialized;
+        static bool Initialized;
+        static bool InitError;
+        static SerialPort serialPort;
+        static int[] eegChannels;
         static double eegValue;
-        static Thread eegDeviceThread;
+
+        static int blockLength = 0x100;
+        static int[] buffer;
+        static Queue<DataFrame> fifo;
+        static int index = 100;
+        static int lastByte = -1;
+        static int channels = 6;
 
         public static Boolean Initialize()
         {
-            if (!Initialized)
+            if (!Initialized & !InitError)
             {
-                // Start the update thread
+                PortForm formPort = new PortForm();
+                if (formPort.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Open the COM port
+                        eegChannels = eegChannels = new int[channels];
+                        serialPort = new SerialPort(formPort.SelectedPort);
+                        serialPort.BaudRate = 0xe100;
+                        serialPort.Parity = Parity.None;
+                        serialPort.DataBits = 8;
+                        serialPort.StopBits = StopBits.One;
+                        serialPort.Handshake = Handshake.None;
+                        serialPort.ReadTimeout = 500;
+                        serialPort.WriteTimeout = 500;
+                        serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
+                        serialPort.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (!InitError)
+                        {
+                            MessageBox.Show(ex.Message, "LucidScribe.InitializePlugin()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        InitError = true;
+                    }
+                }
+                else
+                {
+                    InitError = true;
+                    return false;
+                }
+
                 Initialized = true;
-                eegDeviceThread = new Thread(new ThreadStart(UpdateEEG));
-                eegDeviceThread.Start();
             }
             return true;
+        }
+
+        struct DataFrame
+        {
+            public int counter;
+            public int[] samples;
+        }
+
+        static void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            while (serialPort.BytesToRead > 0)
+            {
+                int num = serialPort.ReadByte();
+                if ((lastByte == 0xa5) && (num == 90))
+                {
+                    index = 0;
+                }
+                if ((index >= 1) && (index < 0x10))
+                {
+                    buffer[index - 1] = num;
+                }
+                if (index == 15)
+                {
+                    DataFrame frame;
+                    frame.samples = new int[channels];
+                    frame.counter = buffer[1];
+
+                    int total = 0;
+                    for (int i = 0; i < channels; i++)
+                    {
+                        eegChannels[i] = (buffer[(i * 2) + 2] * 0x100) + buffer[(i * 2) + 3];
+                        frame.samples[i] = (buffer[(i * 2) + 2] * 0x100) + buffer[(i * 2) + 3];
+                        total += eegChannels[i];
+                    }
+
+                    eegValue = total / channels;
+
+                    //fifo.Enqueue(frame);
+                    //if (fifo.Count == blockLength)
+                    //{
+                    //    DataFrame[] block;
+                    //    block = new DataFrame[blockLength];
+                    //    for (int i = 0; i < blockLength; i++)
+                    //    {
+                    //        block[i] = fifo.Dequeue();
+                    //    }
+
+                    //    for (int i = 0; i < blockLength; i++)
+                    //    {
+                    //        block[i] = fifo.Dequeue();
+                    //    }
+                    //}
+                }
+                index++;
+                lastByte = num;
+            }
+
         }
 
         public static void Dispose()
@@ -35,28 +131,24 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             }
         }
 
-        private static void UpdateEEG()
-        {
-            do
-            {
-                // This is where we will get the data from the device
-                Thread.Sleep(100);
-                eegValue = 256 + (new Random().NextDouble() * 64);
-
-                if (!Initialized) { return; }
-
-            } while (true);
-        }
-
         public static Double GetEEG()
         {
             return eegValue;
+        }
+
+        public static Double GetChannel1()
+        {
+            return eegChannels[0];
+        }
+
+        public static Double GetChannel2()
+        {
+            return eegChannels[1];
         }
     }
 
     namespace EEG
     {   
-        // This class passes the eeg value to Lucid Scribe through the interface - copies could be created for multiple channels
         public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
         {
 
@@ -87,6 +179,92 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 get
                 {
                     double tempValue = Device.GetEEG();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
+                }
+            }
+
+            public override void Dispose()
+            {
+                Device.Dispose();
+            }
+        }
+    }
+
+    namespace EEG1
+    {
+        public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+        {
+
+            public override string Name
+            {
+                get
+                {
+                    return "OpenEEG Ch1";
+                }
+            }
+
+            public override bool Initialize()
+            {
+                try
+                {
+                    return Device.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+                }
+            }
+
+            public override double Value
+            {
+                get
+                {
+                    double tempValue = Device.GetChannel1();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
+                }
+            }
+
+            public override void Dispose()
+            {
+                Device.Dispose();
+            }
+        }
+    }
+
+    namespace EEG2
+    {
+        public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+        {
+
+            public override string Name
+            {
+                get
+                {
+                    return "OpenEEG Ch2";
+                }
+            }
+
+            public override bool Initialize()
+            {
+                try
+                {
+                    return Device.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+                }
+            }
+
+            public override double Value
+            {
+                get
+                {
+                    double tempValue = Device.GetChannel2();
                     if (tempValue > 999) { tempValue = 999; }
                     if (tempValue < 0) { tempValue = 0; }
                     return tempValue;
@@ -131,11 +309,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 {
                     // This is where we will detect patterns indicative of REM sleep
                     double eegValue = Device.GetEEG();
-
-                    if ((new Random().NextDouble() * 10000) == 1)
-                    {
-                        return 888;
-                    }
 
                     return 0;
                 }
