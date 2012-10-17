@@ -26,6 +26,8 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         public static Boolean Initialize()
         {
+            eegChannels = new int[channels];
+
             if (!Initialized & !InitError)
             {
                 PortForm formPort = new PortForm();
@@ -34,7 +36,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                     try
                     {
                         // Open the COM port
-                        eegChannels = eegChannels = new int[channels];
                         serialPort = new SerialPort(formPort.SelectedPort);
                         serialPort.BaudRate = 0xe100;
                         serialPort.Parity = Parity.None;
@@ -138,12 +139,20 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         public static Double GetChannel1()
         {
-            return eegChannels[0];
+            if (channels > 0)
+            {
+                return eegChannels[0];
+            }
+            return 0;
         }
 
         public static Double GetChannel2()
         {
-            return eegChannels[1];
+            if (channels > 0)
+            {
+                return eegChannels[1];
+            }
+            return 0;
         }
     }
 
