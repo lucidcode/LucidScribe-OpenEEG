@@ -17,8 +17,8 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         static int[] eegChannels;
         static double eegValue;
 
-        static int blockLength = 0x100;
-        static int[] buffer;
+        static int blockLength = 256;
+        static int[] buffer = new int[16];
         static Queue<DataFrame> fifo;
         static int index = 100;
         static int lastByte = -1;
@@ -37,7 +37,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                     {
                         // Open the COM port
                         serialPort = new SerialPort(formPort.SelectedPort);
-                        serialPort.BaudRate = 0xe100;
+                        serialPort.BaudRate = 57600;
                         serialPort.Parity = Parity.None;
                         serialPort.DataBits = 8;
                         serialPort.StopBits = StopBits.One;
@@ -75,53 +75,51 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         static void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            while (serialPort.BytesToRead > 0)
+            try
             {
-                int num = serialPort.ReadByte();
-                if ((lastByte == 0xa5) && (num == 90))
+                while (serialPort.BytesToRead > 0)
                 {
-                    index = 0;
-                }
-                if ((index >= 1) && (index < 0x10))
-                {
-                    buffer[index - 1] = num;
-                }
-                if (index == 15)
-                {
-                    DataFrame frame;
-                    frame.samples = new int[channels];
-                    frame.counter = buffer[1];
-
-                    int total = 0;
-                    for (int i = 0; i < channels; i++)
+                    int num = serialPort.ReadByte();
+                    if ((lastByte == 165) && (num == 90))
                     {
-                        eegChannels[i] = (buffer[(i * 2) + 2] * 0x100) + buffer[(i * 2) + 3];
-                        frame.samples[i] = (buffer[(i * 2) + 2] * 0x100) + buffer[(i * 2) + 3];
-                        total += eegChannels[i];
+                        index = 0;
                     }
+                    if ((index >= 1) && (index < 16))
+                    {
+                        buffer[index - 1] = num;
+                    }
+                    if (index == 15)
+                    {
+                        DataFrame frame;
+                        frame.samples = new int[channels];
+                        frame.counter = buffer[1];
 
-                    eegValue = total / channels;
+                        int total = 0;
+                        for (int i = 0; i < channels; i++)
+                        {
+                            eegChannels[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
+                            frame.samples[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
+                            total += eegChannels[i];
+                        }
 
-                    //fifo.Enqueue(frame);
-                    //if (fifo.Count == blockLength)
-                    //{
-                    //    DataFrame[] block;
-                    //    block = new DataFrame[blockLength];
-                    //    for (int i = 0; i < blockLength; i++)
-                    //    {
-                    //        block[i] = fifo.Dequeue();
-                    //    }
-
-                    //    for (int i = 0; i < blockLength; i++)
-                    //    {
-                    //        block[i] = fifo.Dequeue();
-                    //    }
-                    //}
+                        eegValue = total / channels;
+                    }
+                    index++;
+                    lastByte = num;
                 }
-                index++;
-                lastByte = num;
             }
-
+            catch (Exception ex)
+            {
+                try
+                {
+                    serialPort.DataReceived -= serialPort_DataReceived;
+                    serialPort.Close();
+                }
+                catch (Exception ex2)
+                {
+                }
+                MessageBox.Show(ex.Message + "\r\n" + ex.StackTrace, "OpenEEG.DataReceived()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public static void Dispose()
@@ -157,7 +155,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
     }
 
     namespace EEG
-    {   
+    {
         public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
         {
 
