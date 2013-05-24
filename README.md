@@ -1,4 +1,4 @@
 LucidScribe-OpeenEEG
 ====================
 
-Monitors the EEG data from the OpenEEG project's EEG-SMT.
+Monitors the EEG data from devices compatible with the OpenEEG project.

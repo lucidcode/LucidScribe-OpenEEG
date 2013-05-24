@@ -19,7 +19,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         static int blockLength = 256;
         static int[] buffer = new int[16];
-        static Queue<DataFrame> fifo;
         static int index = 100;
         static int lastByte = -1;
         static int channels = 6;
@@ -67,12 +66,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             return true;
         }
 
-        struct DataFrame
-        {
-            public int counter;
-            public int[] samples;
-        }
-
         static void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             try
@@ -90,19 +83,23 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                     }
                     if (index == 15)
                     {
-                        DataFrame frame;
-                        frame.samples = new int[channels];
-                        frame.counter = buffer[1];
-
                         int total = 0;
+                        int activeChannels = 0;
                         for (int i = 0; i < channels; i++)
                         {
                             eegChannels[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
-                            frame.samples[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
                             total += eegChannels[i];
+
+                            if (eegChannels[i] > 0)
+                            {
+                                activeChannels++;
+                            }
                         }
 
-                        eegValue = total / channels;
+                        if (activeChannels > 0)
+                        {
+                            eegValue = total / activeChannels;
+                        }
                     }
                     index++;
                     lastByte = num;
@@ -146,9 +143,45 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         public static Double GetChannel2()
         {
-            if (channels > 0)
+            if (channels > 1)
             {
                 return eegChannels[1];
+            }
+            return 0;
+        }
+
+        public static Double GetChannel3()
+        {
+            if (channels > 2)
+            {
+                return eegChannels[2];
+            }
+            return 0;
+        }
+
+        public static Double GetChannel4()
+        {
+            if (channels > 3)
+            {
+                return eegChannels[3];
+            }
+            return 0;
+        }
+
+        public static Double GetChannel5()
+        {
+            if (channels > 4)
+            {
+                return eegChannels[4];
+            }
+            return 0;
+        }
+
+        public static Double GetChannel6()
+        {
+            if (channels > 5)
+            {
+                return eegChannels[5];
             }
             return 0;
         }
@@ -197,6 +230,49 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 Device.Dispose();
             }
         }
+    }
+
+    namespace REM
+    {
+      public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+      {
+
+        public override string Name
+        {
+          get
+          {
+            return "OpenREM";
+          }
+        }
+
+        public override bool Initialize()
+        {
+          try
+          {
+            return Device.Initialize();
+          }
+          catch (Exception ex)
+          {
+            throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+          }
+        }
+
+        public override double Value
+        {
+          get
+          {
+            // This is where we will detect patterns indicative of REM sleep
+            double eegValue = Device.GetEEG();
+
+            return 0;
+          }
+        }
+
+        public override void Dispose()
+        {
+          Device.Dispose();
+        }
+      }
     }
 
     namespace EEG1
@@ -285,7 +361,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         }
     }
 
-    namespace REM
+    namespace EEG3
     {
         public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
         {
@@ -294,7 +370,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             {
                 get
                 {
-                    return "OpenREM";
+                    return "OpenEEG Ch3";
                 }
             }
 
@@ -314,10 +390,139 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             {
                 get
                 {
-                    // This is where we will detect patterns indicative of REM sleep
-                    double eegValue = Device.GetEEG();
+                    double tempValue = Device.GetChannel3();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
+                }
+            }
 
-                    return 0;
+            public override void Dispose()
+            {
+                Device.Dispose();
+            }
+        }
+    }
+
+    namespace EEG4
+    {
+        public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+        {
+
+            public override string Name
+            {
+                get
+                {
+                    return "OpenEEG Ch4";
+                }
+            }
+
+            public override bool Initialize()
+            {
+                try
+                {
+                    return Device.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+                }
+            }
+
+            public override double Value
+            {
+                get
+                {
+                    double tempValue = Device.GetChannel4();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
+                }
+            }
+
+            public override void Dispose()
+            {
+                Device.Dispose();
+            }
+        }
+    }
+
+    namespace EEG5
+    {
+        public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+        {
+
+            public override string Name
+            {
+                get
+                {
+                    return "OpenEEG Ch5";
+                }
+            }
+
+            public override bool Initialize()
+            {
+                try
+                {
+                    return Device.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+                }
+            }
+
+            public override double Value
+            {
+                get
+                {
+                    double tempValue = Device.GetChannel5();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
+                }
+            }
+
+            public override void Dispose()
+            {
+                Device.Dispose();
+            }
+        }
+    }
+
+    namespace EEG6
+    {
+        public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
+        {
+
+            public override string Name
+            {
+                get
+                {
+                    return "OpenEEG Ch6";
+                }
+            }
+
+            public override bool Initialize()
+            {
+                try
+                {
+                    return Device.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+                }
+            }
+
+            public override double Value
+            {
+                get
+                {
+                    double tempValue = Device.GetChannel6();
+                    if (tempValue > 999) { tempValue = 999; }
+                    if (tempValue < 0) { tempValue = 0; }
+                    return tempValue;
                 }
             }
 

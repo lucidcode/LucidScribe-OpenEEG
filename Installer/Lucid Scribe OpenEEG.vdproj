@@ -15,19 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_11A7AD90501C1B03AA062D760CEFE217"
-        "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1ACB1D7E2010E1C52AEE63EFDB9B2542"
-        "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_25FED00C02F3441AAF0AF20E4C28BBBA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_385BDAC0382E42B2911683583D4B0DC7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5006A6740A244C8C80283F587AC3D8DB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,6 +51,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_627789EC78EE4D5C06AA0DB3E04F7B58"
+        "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6DD7414E52FC4370864DB237CB17AEF8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,6 +64,12 @@
         "Entry"
         {
         "MsmKey" = "8:_76CB9BE5799A4F968E6DCB764615D66F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_79A24A73119E41698F3A7FC42AFEF670"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -105,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B527B4E53279A5D48D5156C8D54C86E2"
+        "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C18840D6628D4B498C1C7EA768ECFDB9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -112,6 +130,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D561255389C842478CB86643369FC415"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -160,13 +184,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1ACB1D7E2010E1C52AEE63EFDB9B2542"
+        "OwnerKey" = "8:_627789EC78EE4D5C06AA0DB3E04F7B58"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_11A7AD90501C1B03AA062D760CEFE217"
+        "OwnerKey" = "8:_B527B4E53279A5D48D5156C8D54C86E2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -274,68 +298,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_11A7AD90501C1B03AA062D760CEFE217"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lucidcode.Controls, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_11A7AD90501C1B03AA062D760CEFE217"
-                    {
-                    "Name" = "8:lucidcode.Controls.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:lucidcode.Controls.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1ACB1D7E2010E1C52AEE63EFDB9B2542"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1ACB1D7E2010E1C52AEE63EFDB9B2542"
-                    {
-                    "Name" = "8:lucidcode.LucidScribe.Interface.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:lucidcode.LucidScribe.Interface.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_25FED00C02F3441AAF0AF20E4C28BBBA"
             {
             "AssemblyRegister" = "3:1"
@@ -353,6 +315,46 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F52B8A6A254F45B9B88C72D6229FD9E2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_385BDAC0382E42B2911683583D4B0DC7"
+            {
+            "SourcePath" = "8:..\\OpenEEG\\Plugins\\OpenEEG Ch3.lsd"
+            "TargetName" = "8:OpenEEG Ch3.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_A367054D1B9A4B6A80E0431FF4130A8F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5006A6740A244C8C80283F587AC3D8DB"
+            {
+            "SourcePath" = "8:..\\OpenEEG\\Plugins\\OpenEEG Ch6.lsd"
+            "TargetName" = "8:OpenEEG Ch6.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_A367054D1B9A4B6A80E0431FF4130A8F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -427,6 +429,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_627789EC78EE4D5C06AA0DB3E04F7B58"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_627789EC78EE4D5C06AA0DB3E04F7B58"
+                    {
+                    "Name" = "8:lucidcode.LucidScribe.Interface.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:lucidcode.LucidScribe.Interface.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6DD7414E52FC4370864DB237CB17AEF8"
             {
             "SourcePath" = "8:..\\OpenEEG\\PluginHandler.cs"
@@ -453,6 +486,26 @@
             "TargetName" = "8:Logo.jpg"
             "Tag" = "8:"
             "Folder" = "8:_0376CCE16B3A4C6AAABAF6C05A95CF10"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79A24A73119E41698F3A7FC42AFEF670"
+            {
+            "SourcePath" = "8:..\\OpenEEG\\Plugins\\OpenEEG Ch4.lsd"
+            "TargetName" = "8:OpenEEG Ch4.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_A367054D1B9A4B6A80E0431FF4130A8F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -640,12 +693,63 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B527B4E53279A5D48D5156C8D54C86E2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lucidcode.Controls, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B527B4E53279A5D48D5156C8D54C86E2"
+                    {
+                    "Name" = "8:lucidcode.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:lucidcode.Controls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C18840D6628D4B498C1C7EA768ECFDB9"
             {
             "SourcePath" = "8:..\\OpenEEG\\PortForm.cs"
             "TargetName" = "8:PortForm.cs"
             "Tag" = "8:"
             "Folder" = "8:_8D5E507046784A479529F5FD35A2FF42"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D561255389C842478CB86643369FC415"
+            {
+            "SourcePath" = "8:..\\OpenEEG\\Plugins\\OpenEEG Ch5.lsd"
+            "TargetName" = "8:OpenEEG Ch5.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_A367054D1B9A4B6A80E0431FF4130A8F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -784,6 +888,50 @@
                     }
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_9595A1E6240243EBBAC6244DAFA7B02E"
+            {
+            "Name" = "8:#1918"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:PersonalFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9AC5C2250A08420BB6EA1916E858623B"
+                    {
+                    "Name" = "8:lucidcode"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_0E8DE7CA160D4B65854EC915B61065BD"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_38C6A78B2E064CB9805E0B06B526CFC1"
+                            {
+                            "Name" = "8:Lucid Scribe"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_08550F427FF44F95AB1672136EE543D6"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A367054D1B9A4B6A80E0431FF4130A8F"
+                                    {
+                                    "Name" = "8:Plugins"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_7B7432CD766F4ADFBC1AD14D166180D1"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_A2F28EF5FAB74BE09C08AB99DF7B5D8E"
             {
             "Name" = "8:#1919"
@@ -822,14 +970,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe OpenEEG"
-        "ProductCode" = "8:{2012398A-D6B4-4F49-9DDD-A76F71F8C2BA}"
-        "PackageCode" = "8:{BEA035FE-B92A-40CD-9AE0-1A6E45DE3139}"
+        "ProductCode" = "8:{B02E40C9-5CBE-4A5D-ACD1-8FFA3BFCB998}"
+        "PackageCode" = "8:{8A60C85A-92D5-4BD0-A415-B6DE2CCAE716}"
         "UpgradeCode" = "8:{D21B48DC-E942-48EA-9916-C569C46778E4}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.2"
+        "ProductVersion" = "8:0.9.3"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucid-code.com/Support"
@@ -1353,7 +1501,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C55B1C30F9804D249DF1E072DCF8CCAD"
             {
-            "SourcePath" = "8:..\\OpenEEG\\obj\\Release\\lucidcode.LucidScribe.Plugin.OpenEEG.dll"
+            "SourcePath" = "8:..\\OpenEEG\\obj\\Debug\\lucidcode.LucidScribe.Plugin.OpenEEG.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
