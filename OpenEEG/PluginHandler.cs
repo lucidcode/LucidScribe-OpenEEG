@@ -257,12 +257,95 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           }
         }
 
+        List<int> m_arrHistory = new List<int>();
+
         public override double Value
         {
           get
           {
-            // This is where we will detect patterns indicative of REM sleep
-            double eegValue = Device.GetEEG();
+
+
+            // Update the mem list
+            m_arrHistory.Add(Convert.ToInt32(Device.GetChannel1()));
+            if (m_arrHistory.Count > 512) { m_arrHistory.RemoveAt(0); }
+
+            // Check for 3 blinks
+            int intBlinks = 0;
+            bool boolBlinking = false;
+
+            int intBelow = 0;
+            int intAbove = 0;
+
+            bool boolDreaming = false;
+            foreach (Double dblValue in m_arrHistory)
+            {
+              if (dblValue > 800)
+              {
+                intAbove += 1;
+                intBelow = 0;
+              }
+              else
+              {
+                intBelow += 1;
+                intAbove = 0;
+              }
+
+              if (!boolBlinking)
+              {
+                if (intAbove >= 2)
+                {
+                  boolBlinking = true;
+                  intBlinks += 1;
+                  intAbove = 0;
+                  intBelow = 0;
+                }
+              }
+              else
+              {
+                if (intBelow >= 28)
+                {
+                  boolBlinking = false;
+                  intBlinks += 1;
+                  intBelow = 0;
+                  intAbove = 0;
+                }
+                else
+                {
+                  if (intAbove >= 12)
+                  {
+                    // reset
+                    boolBlinking = false;
+                    intBlinks = 0;
+                    intBelow = 0;
+                    intAbove = 0;
+                  }
+                }
+              }
+
+              if (intBlinks > 10)
+              {
+                boolDreaming = true;
+                break;
+              }
+
+              if (intAbove > 12)
+              { // reset
+                boolBlinking = false;
+                intBlinks = 0;
+                intBelow = 0;
+                intAbove = 0; ;
+              }
+              if (intBelow > 80)
+              { // reset
+                boolBlinking = false;
+                intBlinks = 0;
+                intBelow = 0;
+                intAbove = 0; ;
+              }
+            }
+
+            if (boolDreaming)
+            { return 888; }
 
             return 0;
           }
