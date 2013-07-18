@@ -970,14 +970,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe OpenEEG"
-        "ProductCode" = "8:{84193568-D3FD-4AE6-8867-86A1387F97B9}"
-        "PackageCode" = "8:{6D2DE3EC-2701-4523-81F0-44551808716D}"
+        "ProductCode" = "8:{AD1F7480-2EB0-4042-BB29-468EECD03200}"
+        "PackageCode" = "8:{7C870E6F-379E-4A16-A4AA-DDE89F1F0130}"
         "UpgradeCode" = "8:{D21B48DC-E942-48EA-9916-C569C46778E4}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.4"
+        "ProductVersion" = "8:0.9.5"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucid-code.com/Support"
@@ -1501,7 +1501,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C55B1C30F9804D249DF1E072DCF8CCAD"
             {
-            "SourcePath" = "8:..\\OpenEEG\\obj\\Debug\\lucidcode.LucidScribe.Plugin.OpenEEG.dll"
+            "SourcePath" = "8:..\\OpenEEG\\obj\\Release\\lucidcode.LucidScribe.Plugin.OpenEEG.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"

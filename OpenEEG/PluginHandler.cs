@@ -17,7 +17,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         static int[] eegChannels;
         static double eegValue;
 
-        static int blockLength = 256;
         static int[] buffer = new int[16];
         static int index = 100;
         static int lastByte = -1;
@@ -614,6 +613,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 Device.Dispose();
             }
         }
-    }
+      }
 
 }
