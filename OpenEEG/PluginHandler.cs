@@ -33,6 +33,9 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 {
                     try
                     {
+                        // Set the amount of channels
+                        channels = formPort.Channels;
+
                         // Open the COM port
                         serialPort = new SerialPort(formPort.SelectedPort);
                         serialPort.BaudRate = 57600;
@@ -86,12 +89,15 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                         int activeChannels = 0;
                         for (int i = 0; i < channels; i++)
                         {
-                            eegChannels[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
-                            total += eegChannels[i];
-
-                            if (eegChannels[i] > 0)
+                            if (buffer.Length >= (i * 2) + 3)
                             {
-                                activeChannels++;
+                                eegChannels[i] = (buffer[(i * 2) + 2] * 256) + buffer[(i * 2) + 3];
+
+                                if (eegChannels[i] > 0)
+                                {
+                                  activeChannels++;
+                                  total += eegChannels[i];
+                                }
                             }
                         }
 
@@ -100,6 +106,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                             eegValue = total / activeChannels;
                         }
                     }
+
                     index++;
                     lastByte = num;
                 }
@@ -265,7 +272,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
 
             // Update the mem list
-            m_arrHistory.Add(Convert.ToInt32(Device.GetChannel1()));
+            m_arrHistory.Add(Convert.ToInt32(Device.GetEEG()));
             if (m_arrHistory.Count > 512) { m_arrHistory.RemoveAt(0); }
 
             // Check for 3 blinks

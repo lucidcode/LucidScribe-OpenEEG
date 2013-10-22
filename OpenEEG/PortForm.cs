@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Xml;
+using System.IO;
 
 namespace lucidcode.LucidScribe.Plugin.OpenEEG
 {
@@ -13,6 +15,10 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
     {
 
         public String SelectedPort = "";
+        public int Channels = 2;
+
+        private Boolean loaded = false;
+        private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
 
         public PortForm()
         {
@@ -22,6 +28,8 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         private void PortForm_Load(object sender, EventArgs e)
         {
           LoadPortList();
+          LoadSettings();
+          loaded = true;
         }
 
         private void LoadPortList()
@@ -63,6 +71,41 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           } 
         }
 
+        private void LoadSettings()
+        {
+          XmlDocument xmlSettings = new XmlDocument();
+
+          if (!File.Exists(m_strPath + "Plugins\\OpenEEG.User.lsd"))
+          {
+            String defaultSettings = "<LucidScribeData>";
+            defaultSettings += "<Plugin>";
+            defaultSettings += "<Channels>2</Channels>";
+            defaultSettings += "</Plugin>";
+            defaultSettings += "</LucidScribeData>";
+            File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
+          }
+
+          xmlSettings.Load(m_strPath + "Plugins\\OpenEEG.User.lsd");
+          cmbChannels.Text = xmlSettings.DocumentElement.SelectSingleNode("//Channels").InnerText;
+        }
+
+        private void cmbChannels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+          Channels = Convert.ToInt32(cmbChannels.Text);
+          SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+          String defaultSettings = "<LucidScribeData>";
+          defaultSettings += "<Plugin>";
+          defaultSettings += "<Channels>" + cmbChannels.Text + "</Channels>";
+          defaultSettings += "</Plugin>";
+          defaultSettings += "</LucidScribeData>";
+          File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
+        }
+
         private void lstPlaylists_MouseMove(object sender, MouseEventArgs e)
         {
             if (lstPorts.GetItemAt(e.X, e.Y) != null)
@@ -89,5 +132,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         {
           LoadPortList();
         }
+
     }
 }
