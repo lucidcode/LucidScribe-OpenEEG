@@ -16,6 +16,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         public String SelectedPort = "";
         public int Channels = 2;
+        public String Algorithm = "REM Detection";
 
         private Boolean loaded = false;
         private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
@@ -80,13 +81,22 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             String defaultSettings = "<LucidScribeData>";
             defaultSettings += "<Plugin>";
             defaultSettings += "<Channels>2</Channels>";
+            defaultSettings += "<Algorithm>REM Detection</Algorithm>";
             defaultSettings += "</Plugin>";
             defaultSettings += "</LucidScribeData>";
             File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
           }
 
           xmlSettings.Load(m_strPath + "Plugins\\OpenEEG.User.lsd");
-          cmbChannels.Text = xmlSettings.DocumentElement.SelectSingleNode("//Channels").InnerText;
+
+          if (xmlSettings.DocumentElement.SelectSingleNode("//Channels") != null)
+          {
+            cmbChannels.Text = xmlSettings.DocumentElement.SelectSingleNode("//Channels").InnerText;
+          }
+          if (xmlSettings.DocumentElement.SelectSingleNode("//Algorithm") != null)
+          {
+            cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
+          }
         }
 
         private void cmbChannels_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,11 +106,19 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           SaveSettings();
         }
 
+        private void cmbAlgorithm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+          Algorithm = cmbAlgorithm.Text;
+          SaveSettings();
+        }
+
         private void SaveSettings()
         {
           String defaultSettings = "<LucidScribeData>";
           defaultSettings += "<Plugin>";
           defaultSettings += "<Channels>" + cmbChannels.Text + "</Channels>";
+          defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
           defaultSettings += "</Plugin>";
           defaultSettings += "</LucidScribeData>";
           File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);

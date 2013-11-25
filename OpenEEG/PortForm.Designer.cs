@@ -43,6 +43,9 @@
       this.panel3D5 = new lucidcode.Controls.Panel3D();
       this.label4 = new System.Windows.Forms.Label();
       this.label11 = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
       this.pnlPlugins.SuspendLayout();
       this.mnuPortsList.SuspendLayout();
       this.Panel3D4.SuspendLayout();
@@ -58,9 +61,9 @@
       this.pnlPlugins.BackColor = System.Drawing.Color.White;
       this.pnlPlugins.Controls.Add(this.lstPorts);
       this.pnlPlugins.Controls.Add(this.Panel3D4);
-      this.pnlPlugins.Location = new System.Drawing.Point(12, 78);
+      this.pnlPlugins.Location = new System.Drawing.Point(12, 102);
       this.pnlPlugins.Name = "pnlPlugins";
-      this.pnlPlugins.Size = new System.Drawing.Size(308, 167);
+      this.pnlPlugins.Size = new System.Drawing.Size(308, 186);
       this.pnlPlugins.TabIndex = 5;
       // 
       // lstPorts
@@ -75,7 +78,7 @@
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
       this.lstPorts.Name = "lstPorts";
-      this.lstPorts.Size = new System.Drawing.Size(302, 139);
+      this.lstPorts.Size = new System.Drawing.Size(302, 158);
       this.lstPorts.TabIndex = 8;
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
@@ -152,9 +155,9 @@
             "4",
             "5",
             "6"});
-      this.cmbChannels.Location = new System.Drawing.Point(6, 30);
+      this.cmbChannels.Location = new System.Drawing.Point(82, 30);
       this.cmbChannels.Name = "cmbChannels";
-      this.cmbChannels.Size = new System.Drawing.Size(299, 21);
+      this.cmbChannels.Size = new System.Drawing.Size(217, 21);
       this.cmbChannels.TabIndex = 282;
       this.cmbChannels.SelectedIndexChanged += new System.EventHandler(this.cmbChannels_SelectedIndexChanged);
       // 
@@ -163,11 +166,14 @@
       this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D3.BackColor = System.Drawing.Color.LightSteelBlue;
+      this.panel3D3.Controls.Add(this.label2);
+      this.panel3D3.Controls.Add(this.cmbAlgorithm);
+      this.panel3D3.Controls.Add(this.label1);
       this.panel3D3.Controls.Add(this.panel3D5);
       this.panel3D3.Controls.Add(this.cmbChannels);
       this.panel3D3.Location = new System.Drawing.Point(12, 12);
       this.panel3D3.Name = "panel3D3";
-      this.panel3D3.Size = new System.Drawing.Size(308, 60);
+      this.panel3D3.Size = new System.Drawing.Size(308, 84);
       this.panel3D3.TabIndex = 284;
       // 
       // panel3D5
@@ -203,15 +209,50 @@
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(281, 19);
       this.label11.TabIndex = 3;
-      this.label11.Text = "Channels";
+      this.label11.Text = "Settings";
       this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // label1
+      // 
+      this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
+      this.label1.Location = new System.Drawing.Point(3, 30);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(73, 21);
+      this.label1.TabIndex = 283;
+      this.label1.Text = "Channels";
+      this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // label2
+      // 
+      this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+      this.label2.Location = new System.Drawing.Point(3, 57);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(73, 21);
+      this.label2.TabIndex = 285;
+      this.label2.Text = "Algorithm";
+      this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // cmbAlgorithm
+      // 
+      this.cmbAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbAlgorithm.FormattingEnabled = true;
+      this.cmbAlgorithm.Items.AddRange(new object[] {
+            "REM Detection",
+            "Motion Detection"});
+      this.cmbAlgorithm.Location = new System.Drawing.Point(82, 57);
+      this.cmbAlgorithm.Name = "cmbAlgorithm";
+      this.cmbAlgorithm.Size = new System.Drawing.Size(217, 21);
+      this.cmbAlgorithm.TabIndex = 284;
+      this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
       // 
       // PortForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.LightSteelBlue;
-      this.ClientSize = new System.Drawing.Size(332, 257);
+      this.ClientSize = new System.Drawing.Size(332, 300);
       this.Controls.Add(this.panel3D3);
       this.Controls.Add(this.pnlPlugins);
       this.Font = new System.Drawing.Font("Verdana", 8.25F);
@@ -244,5 +285,8 @@
     internal Controls.Panel3D panel3D5;
     internal System.Windows.Forms.Label label4;
     internal System.Windows.Forms.Label label11;
+    internal System.Windows.Forms.Label label2;
+    private System.Windows.Forms.ComboBox cmbAlgorithm;
+    internal System.Windows.Forms.Label label1;
   }
 }

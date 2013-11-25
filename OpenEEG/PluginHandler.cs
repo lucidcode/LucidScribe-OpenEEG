@@ -20,7 +20,8 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         static int[] buffer = new int[16];
         static int index = 100;
         static int lastByte = -1;
-        static int channels = 6;
+        static int channels = 2;
+        public static string Algorithm = "REM Detection";
 
         public static Boolean Initialize()
         {
@@ -35,6 +36,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                     {
                         // Set the amount of channels
                         channels = formPort.Channels;
+                        Algorithm = formPort.Algorithm;
 
                         // Open the COM port
                         serialPort = new SerialPort(formPort.SelectedPort);
@@ -243,6 +245,9 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
       public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
       {
 
+        static int TicksSinceLastArtifact = 0;
+        static int TicksAbove = 0;
+
         public override string Name
         {
           get
@@ -270,88 +275,111 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           get
           {
 
-
-            // Update the mem list
-            m_arrHistory.Add(Convert.ToInt32(Device.GetEEG()));
-            if (m_arrHistory.Count > 512) { m_arrHistory.RemoveAt(0); }
-
-            // Check for 3 blinks
-            int intBlinks = 0;
-            bool boolBlinking = false;
-
-            int intBelow = 0;
-            int intAbove = 0;
-
-            bool boolDreaming = false;
-            foreach (Double dblValue in m_arrHistory)
+            if (Device.Algorithm == "REM Detection")
             {
-              if (dblValue > 800)
-              {
-                intAbove += 1;
-                intBelow = 0;
-              }
-              else
-              {
-                intBelow += 1;
-                intAbove = 0;
-              }
+              // Update the mem list
+              m_arrHistory.Add(Convert.ToInt32(Device.GetEEG()));
+              if (m_arrHistory.Count > 512) { m_arrHistory.RemoveAt(0); }
 
-              if (!boolBlinking)
+              // Check for blinks
+              int intBlinks = 0;
+              bool boolBlinking = false;
+
+              int intBelow = 0;
+              int intAbove = 0;
+
+              bool boolDreaming = false;
+              foreach (Double dblValue in m_arrHistory)
               {
-                if (intAbove >= 2)
+                if (dblValue > 600)
                 {
-                  boolBlinking = true;
-                  intBlinks += 1;
-                  intAbove = 0;
+                  intAbove += 1;
                   intBelow = 0;
-                }
-              }
-              else
-              {
-                if (intBelow >= 28)
-                {
-                  boolBlinking = false;
-                  intBlinks += 1;
-                  intBelow = 0;
-                  intAbove = 0;
                 }
                 else
                 {
-                  if (intAbove >= 12)
+                  intBelow += 1;
+                  intAbove = 0;
+                }
+
+                if (!boolBlinking)
+                {
+                  if (intAbove >= 1)
                   {
-                    // reset
+                    boolBlinking = true;
+                    intBlinks += 1;
+                    intAbove = 0;
+                    intBelow = 0;
+                  }
+                }
+                else
+                {
+                  if (intBelow >= 28)
+                  {
                     boolBlinking = false;
-                    intBlinks = 0;
                     intBelow = 0;
                     intAbove = 0;
                   }
+                  else
+                  {
+                    if (intAbove >= 12)
+                    {
+                      // reset
+                      boolBlinking = false;
+                      intBlinks = 0;
+                      intBelow = 0;
+                      intAbove = 0;
+                    }
+                  }
+                }
+
+                if (intBlinks > 6)
+                {
+                  boolDreaming = true;
+                  break;
+                }
+
+                if (intAbove > 12)
+                { // reset
+                  boolBlinking = false;
+                  intBlinks = 0;
+                  intBelow = 0;
+                  intAbove = 0; ;
+                }
+                if (intBelow > 80)
+                { // reset
+                  boolBlinking = false;
+                  intBlinks = 0;
+                  intBelow = 0;
+                  intAbove = 0; ;
                 }
               }
 
-              if (intBlinks > 10)
-              {
-                boolDreaming = true;
-                break;
-              }
+              if (boolDreaming)
+              { return 888; }
 
-              if (intAbove > 12)
-              { // reset
-                boolBlinking = false;
-                intBlinks = 0;
-                intBelow = 0;
-                intAbove = 0; ;
-              }
-              if (intBelow > 80)
-              { // reset
-                boolBlinking = false;
-                intBlinks = 0;
-                intBelow = 0;
-                intAbove = 0; ;
-              }
+              if (intBlinks > 10) { intBlinks = 10; }
+              return intBlinks * 100;
             }
+            else if (Device.Algorithm == "Motion Detection")
+            {
+                if (Device.GetEEG() > 980)
+                {
+                  TicksAbove++;
+                  if (TicksAbove > 5)
+                  {
+                    TicksAbove = 0;
+                    TicksSinceLastArtifact = 0;
+                    if (TicksSinceLastArtifact > 19200)
+                    {
+                      return 888;
+                    }
+                  }
+                }
 
-            if (boolDreaming)
-            { return 888; }
+              TicksSinceLastArtifact++;
+              return 0;
+            }
 
             return 0;
           }
