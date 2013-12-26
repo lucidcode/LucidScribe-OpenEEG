@@ -99,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_99922EB46F4E4AC0AF421EF2BE406F1B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A50AD2CB84BC4354A0FBDE7F0519C9CC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,6 +141,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C60045C60F7E6A1ECB89F4F9C68FBC67"
+        "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D561255389C842478CB86643369FC415"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -155,6 +167,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C55B1C30F9804D249DF1E072DCF8CCAD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C60045C60F7E6A1ECB89F4F9C68FBC67"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -611,6 +629,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99922EB46F4E4AC0AF421EF2BE406F1B"
+            {
+            "SourcePath" = "8:..\\OpenEEG\\Plugins\\OpenEEG RAW.lsd"
+            "TargetName" = "8:OpenEEG RAW.lsd"
+            "Tag" = "8:"
+            "Folder" = "8:_A367054D1B9A4B6A80E0431FF4130A8F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A50AD2CB84BC4354A0FBDE7F0519C9CC"
             {
             "SourcePath" = "8:Logo.jpg"
@@ -742,6 +780,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C60045C60F7E6A1ECB89F4F9C68FBC67"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:lucidcode.LucidScribe.Interface.Illuminated, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C60045C60F7E6A1ECB89F4F9C68FBC67"
+                    {
+                    "Name" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:lucidcode.LucidScribe.Interface.Illuminated.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_491A001224CF4D699EA475B2FB5F2890"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D561255389C842478CB86643369FC415"
@@ -970,14 +1039,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe OpenEEG"
-        "ProductCode" = "8:{16B69B10-991C-49C4-920B-E9AB56A6D54B}"
-        "PackageCode" = "8:{3434653C-6FC8-47E7-AA7A-761D3312806C}"
+        "ProductCode" = "8:{E8942307-372A-4855-BDD0-C2B00C15D695}"
+        "PackageCode" = "8:{4DA8BE2E-E21A-402F-A3E8-0D7290F6B99D}"
         "UpgradeCode" = "8:{D21B48DC-E942-48EA-9916-C569C46778E4}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.8"
+        "ProductVersion" = "8:0.9.9"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucid-code.com/Support"

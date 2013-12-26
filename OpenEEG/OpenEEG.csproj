@@ -48,6 +48,10 @@
       <HintPath>Dependencies\lucidcode.LucidScribe.Interface.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="lucidcode.LucidScribe.Interface.Illuminated, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\lucidcode.LucidScribe.Interface.Illuminated.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />

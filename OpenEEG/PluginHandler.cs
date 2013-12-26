@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Threading;
 using System.IO.Ports;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace lucidcode.LucidScribe.Plugin.OpenEEG
 {
-
     public static class Device
     {
         static bool Initialized;
@@ -17,11 +17,16 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         static int[] eegChannels;
         static double eegValue;
 
+        static double eegTicks;
+        static bool clearRaw;
+
         static int[] buffer = new int[16];
         static int index = 100;
         static int lastByte = -1;
         static int channels = 2;
         public static string Algorithm = "REM Detection";
+
+        public static EventHandler<EventArgs> OpenEEGChanged;
 
         public static Boolean Initialize()
         {
@@ -103,9 +108,23 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                             }
                         }
 
+                        int currentValue = 0;
                         if (activeChannels > 0)
                         {
-                            eegValue = total / activeChannels;
+                            currentValue = total / activeChannels;
+                            if (clearRaw)
+                            {
+                              clearRaw = false;
+                              eegValue = 0;
+                              eegTicks = 0;
+                            }
+                            eegValue += currentValue;
+                            eegTicks++;
+                        }
+
+                        if (OpenEEGChanged != null)
+                        {
+                          OpenEEGChanged((object)currentValue, null);
                         }
                     }
 
@@ -137,7 +156,13 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
 
         public static Double GetEEG()
         {
-            return eegValue;
+          if (eegTicks == 0) return 0;
+          return (eegValue / eegTicks);
+        }
+
+        public static void ClearEEG()
+        {
+          clearRaw = true;
         }
 
         public static Double GetChannel1()
@@ -200,8 +225,6 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         public class PluginHandler : lucidcode.LucidScribe.Interface.LucidPluginBase
         {
 
-            private double m_dblValue = 256;
-
             public override string Name
             {
                 get
@@ -227,6 +250,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 get
                 {
                     double tempValue = Device.GetEEG();
+                    Device.ClearEEG();
                     if (tempValue > 999) { tempValue = 999; }
                     if (tempValue < 0) { tempValue = 0; }
                     return tempValue;
@@ -238,6 +262,130 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                 Device.Dispose();
             }
         }
+    }
+
+    namespace RAW
+    {
+      public class PluginHandler : lucidcode.LucidScribe.Interface.ILluminatedPlugin
+      {
+
+        private double m_dblValue = 256;
+
+        public string Name
+        {
+          get
+          {
+            return "OpenEEG RAW";
+          }
+        }
+
+        public bool Initialize()
+        {
+          try
+          {
+            bool initialized = Device.Initialize();
+            Device.OpenEEGChanged += OpenEEGChanged;
+            return initialized;
+          }
+          catch (Exception ex)
+          {
+            throw (new Exception("The '" + Name + "' plugin failed to initialize: " + ex.Message));
+          }
+        }
+
+        public event Interface.SenseHandler Sensed;
+        public void OpenEEGChanged(object sender, EventArgs e)
+        {
+          if (ClearTicks)
+          {
+            ClearTicks = false;
+            TickCount = "";
+          }
+          TickCount += sender + ",";
+
+          if (ClearBuffer)
+          {
+            ClearBuffer = false;
+            BufferData = "";
+          }
+          BufferData += sender + ",";
+        }
+
+        public void Dispose()
+        {
+          Device.OpenEEGChanged -= OpenEEGChanged;
+          Device.Dispose();
+        }
+
+        public Boolean isEnabled = false;
+        public Boolean Enabled
+        {
+          get
+          {
+            return isEnabled;
+          }
+          set
+          {
+            isEnabled = value;
+          }
+        }
+
+        public Color PluginColor = Color.White;
+        public Color Color
+        {
+          get
+          {
+            return Color;
+          }
+          set
+          {
+            Color = value;
+          }
+        }
+
+        private Boolean ClearTicks = false;
+        public String TickCount = "";
+        public String Ticks
+        {
+          get
+          {
+            ClearTicks = true;
+            return TickCount;
+          }
+          set
+          {
+            TickCount = value;
+          }
+        }
+
+        private Boolean ClearBuffer = false;
+        public String BufferData = "";
+        public String Buffer
+        {
+          get
+          {
+            ClearBuffer = true;
+            return BufferData;
+          }
+          set
+          {
+            BufferData = value;
+          }
+        }
+
+        int lastHour;
+        public int LastHour
+        {
+          get
+          {
+            return lastHour;
+          }
+          set
+          {
+            lastHour = value;
+          }
+        }
+      }
     }
 
     namespace REM
