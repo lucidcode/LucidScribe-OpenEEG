@@ -40,12 +40,14 @@
       this.Label6 = new System.Windows.Forms.Label();
       this.cmbChannels = new System.Windows.Forms.ComboBox();
       this.panel3D3 = new lucidcode.Controls.Panel3D();
+      this.label3 = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.cmbBlinkInterval = new System.Windows.Forms.ComboBox();
+      this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
+      this.label1 = new System.Windows.Forms.Label();
       this.panel3D5 = new lucidcode.Controls.Panel3D();
       this.label4 = new System.Windows.Forms.Label();
       this.label11 = new System.Windows.Forms.Label();
-      this.label1 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.cmbAlgorithm = new System.Windows.Forms.ComboBox();
       this.pnlPlugins.SuspendLayout();
       this.mnuPortsList.SuspendLayout();
       this.Panel3D4.SuspendLayout();
@@ -55,30 +57,30 @@
       // 
       // pnlPlugins
       // 
-      this.pnlPlugins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.pnlPlugins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.pnlPlugins.BackColor = System.Drawing.Color.White;
       this.pnlPlugins.Controls.Add(this.lstPorts);
       this.pnlPlugins.Controls.Add(this.Panel3D4);
-      this.pnlPlugins.Location = new System.Drawing.Point(12, 102);
+      this.pnlPlugins.Location = new System.Drawing.Point(12, 130);
       this.pnlPlugins.Name = "pnlPlugins";
-      this.pnlPlugins.Size = new System.Drawing.Size(308, 186);
+      this.pnlPlugins.Size = new System.Drawing.Size(308, 187);
       this.pnlPlugins.TabIndex = 5;
       // 
       // lstPorts
       // 
       this.lstPorts.Activation = System.Windows.Forms.ItemActivation.OneClick;
-      this.lstPorts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lstPorts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                  | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.lstPorts.BorderStyle = System.Windows.Forms.BorderStyle.None;
       this.lstPorts.ContextMenuStrip = this.mnuPortsList;
       this.lstPorts.LargeImageList = this.lstImg;
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
       this.lstPorts.Name = "lstPorts";
-      this.lstPorts.Size = new System.Drawing.Size(302, 158);
+      this.lstPorts.Size = new System.Drawing.Size(302, 159);
       this.lstPorts.TabIndex = 8;
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
@@ -108,8 +110,8 @@
       // 
       // Panel3D4
       // 
-      this.Panel3D4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.Panel3D4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.Panel3D4.BackColor = System.Drawing.Color.SteelBlue;
       this.Panel3D4.Controls.Add(this.Label5);
       this.Panel3D4.Controls.Add(this.Label6);
@@ -131,8 +133,8 @@
       // 
       // Label6
       // 
-      this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.Label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.Label6.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
       this.Label6.ForeColor = System.Drawing.Color.White;
       this.Label6.Location = new System.Drawing.Point(24, 3);
@@ -144,8 +146,8 @@
       // 
       // cmbChannels
       // 
-      this.cmbChannels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbChannels.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.cmbChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.cmbChannels.FormattingEnabled = true;
       this.cmbChannels.Items.AddRange(new object[] {
@@ -155,31 +157,219 @@
             "4",
             "5",
             "6"});
-      this.cmbChannels.Location = new System.Drawing.Point(82, 30);
+      this.cmbChannels.Location = new System.Drawing.Point(125, 30);
       this.cmbChannels.Name = "cmbChannels";
-      this.cmbChannels.Size = new System.Drawing.Size(217, 21);
+      this.cmbChannels.Size = new System.Drawing.Size(174, 21);
       this.cmbChannels.TabIndex = 282;
       this.cmbChannels.SelectedIndexChanged += new System.EventHandler(this.cmbChannels_SelectedIndexChanged);
       // 
       // panel3D3
       // 
-      this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel3D3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D3.BackColor = System.Drawing.Color.LightSteelBlue;
+      this.panel3D3.Controls.Add(this.label3);
       this.panel3D3.Controls.Add(this.label2);
+      this.panel3D3.Controls.Add(this.cmbBlinkInterval);
       this.panel3D3.Controls.Add(this.cmbAlgorithm);
       this.panel3D3.Controls.Add(this.label1);
       this.panel3D3.Controls.Add(this.panel3D5);
       this.panel3D3.Controls.Add(this.cmbChannels);
       this.panel3D3.Location = new System.Drawing.Point(12, 12);
       this.panel3D3.Name = "panel3D3";
-      this.panel3D3.Size = new System.Drawing.Size(308, 84);
+      this.panel3D3.Size = new System.Drawing.Size(308, 112);
       this.panel3D3.TabIndex = 284;
+      // 
+      // label3
+      // 
+      this.label3.ForeColor = System.Drawing.Color.MidnightBlue;
+      this.label3.Location = new System.Drawing.Point(3, 84);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(116, 21);
+      this.label3.TabIndex = 285;
+      this.label3.Text = "Blink Interval (MS)";
+      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // label2
+      // 
+      this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+      this.label2.Location = new System.Drawing.Point(3, 57);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(116, 21);
+      this.label2.TabIndex = 285;
+      this.label2.Text = "Algorithm";
+      this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // cmbBlinkInterval
+      // 
+      this.cmbBlinkInterval.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbBlinkInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbBlinkInterval.FormattingEnabled = true;
+      this.cmbBlinkInterval.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128"});
+      this.cmbBlinkInterval.Location = new System.Drawing.Point(125, 84);
+      this.cmbBlinkInterval.Name = "cmbBlinkInterval";
+      this.cmbBlinkInterval.Size = new System.Drawing.Size(174, 21);
+      this.cmbBlinkInterval.TabIndex = 284;
+      this.cmbBlinkInterval.SelectedIndexChanged += new System.EventHandler(this.cmbBlinkInterval_SelectedIndexChanged);
+      // 
+      // cmbAlgorithm
+      // 
+      this.cmbAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
+      this.cmbAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cmbAlgorithm.FormattingEnabled = true;
+      this.cmbAlgorithm.Items.AddRange(new object[] {
+            "REM Detection",
+            "Motion Detection"});
+      this.cmbAlgorithm.Location = new System.Drawing.Point(125, 57);
+      this.cmbAlgorithm.Name = "cmbAlgorithm";
+      this.cmbAlgorithm.Size = new System.Drawing.Size(174, 21);
+      this.cmbAlgorithm.TabIndex = 284;
+      this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
+      // 
+      // label1
+      // 
+      this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
+      this.label1.Location = new System.Drawing.Point(3, 30);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(116, 21);
+      this.label1.TabIndex = 283;
+      this.label1.Text = "Channels";
+      this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel3D5
       // 
-      this.panel3D5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel3D5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.panel3D5.BackColor = System.Drawing.Color.SteelBlue;
       this.panel3D5.Controls.Add(this.label4);
       this.panel3D5.Controls.Add(this.label11);
@@ -201,8 +391,8 @@
       // 
       // label11
       // 
-      this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                  | System.Windows.Forms.AnchorStyles.Right)));
       this.label11.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
       this.label11.ForeColor = System.Drawing.Color.White;
       this.label11.Location = new System.Drawing.Point(24, 3);
@@ -212,47 +402,12 @@
       this.label11.Text = "Settings";
       this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // label1
-      // 
-      this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-      this.label1.Location = new System.Drawing.Point(3, 30);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(73, 21);
-      this.label1.TabIndex = 283;
-      this.label1.Text = "Channels";
-      this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // label2
-      // 
-      this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-      this.label2.Location = new System.Drawing.Point(3, 57);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(73, 21);
-      this.label2.TabIndex = 285;
-      this.label2.Text = "Algorithm";
-      this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // cmbAlgorithm
-      // 
-      this.cmbAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.cmbAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.cmbAlgorithm.FormattingEnabled = true;
-      this.cmbAlgorithm.Items.AddRange(new object[] {
-            "REM Detection",
-            "Motion Detection"});
-      this.cmbAlgorithm.Location = new System.Drawing.Point(82, 57);
-      this.cmbAlgorithm.Name = "cmbAlgorithm";
-      this.cmbAlgorithm.Size = new System.Drawing.Size(217, 21);
-      this.cmbAlgorithm.TabIndex = 284;
-      this.cmbAlgorithm.SelectedIndexChanged += new System.EventHandler(this.cmbAlgorithm_SelectedIndexChanged);
-      // 
       // PortForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.LightSteelBlue;
-      this.ClientSize = new System.Drawing.Size(332, 300);
+      this.ClientSize = new System.Drawing.Size(332, 329);
       this.Controls.Add(this.panel3D3);
       this.Controls.Add(this.pnlPlugins);
       this.Font = new System.Drawing.Font("Verdana", 8.25F);
@@ -288,5 +443,7 @@
     internal System.Windows.Forms.Label label2;
     private System.Windows.Forms.ComboBox cmbAlgorithm;
     internal System.Windows.Forms.Label label1;
+    internal System.Windows.Forms.Label label3;
+    private System.Windows.Forms.ComboBox cmbBlinkInterval;
   }
 }

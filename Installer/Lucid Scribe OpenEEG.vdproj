@@ -172,12 +172,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C60045C60F7E6A1ECB89F4F9C68FBC67"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B29DAD1442AE48789D2311EAFCFFFDEF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -197,6 +191,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_25FED00C02F3441AAF0AF20E4C28BBBA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C60045C60F7E6A1ECB89F4F9C68FBC67"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1039,14 +1039,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lucid Scribe OpenEEG"
-        "ProductCode" = "8:{E8942307-372A-4855-BDD0-C2B00C15D695}"
-        "PackageCode" = "8:{4DA8BE2E-E21A-402F-A3E8-0D7290F6B99D}"
+        "ProductCode" = "8:{C106BBB4-B076-4B61-A7AB-B3E6C3B4C733}"
+        "PackageCode" = "8:{B1FFAA63-8ADB-4AE3-BE93-46635964E423}"
         "UpgradeCode" = "8:{D21B48DC-E942-48EA-9916-C569C46778E4}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.9.9"
+        "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:lucidcode"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.lucid-code.com/Support"

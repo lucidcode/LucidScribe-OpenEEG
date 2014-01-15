@@ -17,6 +17,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         public String SelectedPort = "";
         public int Channels = 2;
         public String Algorithm = "REM Detection";
+        public int BlinkInterval = 28;
 
         private Boolean loaded = false;
         private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
@@ -82,6 +83,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             defaultSettings += "<Plugin>";
             defaultSettings += "<Channels>2</Channels>";
             defaultSettings += "<Algorithm>REM Detection</Algorithm>";
+            defaultSettings += "<BlinkInterval>28</BlinkInterval>";
             defaultSettings += "</Plugin>";
             defaultSettings += "</LucidScribeData>";
             File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
@@ -96,6 +98,14 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           if (xmlSettings.DocumentElement.SelectSingleNode("//Algorithm") != null)
           {
             cmbAlgorithm.Text = xmlSettings.DocumentElement.SelectSingleNode("//Algorithm").InnerText;
+          }
+          if (xmlSettings.DocumentElement.SelectSingleNode("//BlinkInterval") != null)
+          {
+            cmbBlinkInterval.Text = xmlSettings.DocumentElement.SelectSingleNode("//BlinkInterval").InnerText;
+          }
+          else
+          {
+            cmbBlinkInterval.Text = "28";
           }
         }
 
@@ -113,12 +123,20 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           SaveSettings();
         }
 
+        private void cmbBlinkInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+          BlinkInterval = Convert.ToInt32(cmbBlinkInterval.Text);
+          SaveSettings();
+        }
+
         private void SaveSettings()
         {
           String defaultSettings = "<LucidScribeData>";
           defaultSettings += "<Plugin>";
           defaultSettings += "<Channels>" + cmbChannels.Text + "</Channels>";
           defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
+          defaultSettings += "<BlinkInterval>" + cmbBlinkInterval.Text + "</BlinkInterval>";
           defaultSettings += "</Plugin>";
           defaultSettings += "</LucidScribeData>";
           File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
