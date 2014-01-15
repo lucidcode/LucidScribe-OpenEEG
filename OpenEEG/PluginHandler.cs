@@ -43,7 +43,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                         // Set the amount of channels
                         channels = formPort.Channels;
                         Algorithm = formPort.Algorithm;
-                        BlinkInterval = formPort.BlinkInterval;
+                        BlinkInterval = formPort.BlinkInterval / 10;
 
                         // Open the COM port
                         serialPort = new SerialPort(formPort.SelectedPort);

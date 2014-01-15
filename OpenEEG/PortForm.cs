@@ -17,7 +17,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         public String SelectedPort = "";
         public int Channels = 2;
         public String Algorithm = "REM Detection";
-        public int BlinkInterval = 28;
+        public int BlinkInterval = 280;
 
         private Boolean loaded = false;
         private string m_strPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\lucidcode\\Lucid Scribe\\";
@@ -83,7 +83,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             defaultSettings += "<Plugin>";
             defaultSettings += "<Channels>2</Channels>";
             defaultSettings += "<Algorithm>REM Detection</Algorithm>";
-            defaultSettings += "<BlinkInterval>28</BlinkInterval>";
+            defaultSettings += "<BlinkInterval>280</BlinkInterval>";
             defaultSettings += "</Plugin>";
             defaultSettings += "</LucidScribeData>";
             File.WriteAllText(m_strPath + "Plugins\\OpenEEG.User.lsd", defaultSettings);
@@ -105,7 +105,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           }
           else
           {
-            cmbBlinkInterval.Text = "28";
+            cmbBlinkInterval.Text = "280";
           }
         }
 
