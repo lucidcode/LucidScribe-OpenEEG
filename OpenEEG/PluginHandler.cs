@@ -25,6 +25,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         static int lastByte = -1;
         static int channels = 2;
         public static string Algorithm = "REM Detection";
+        public static int Threshold = 600;
         public static int BlinkInterval = 28;
 
         public static EventHandler<EventArgs> OpenEEGChanged;
@@ -44,6 +45,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
                         channels = formPort.Channels;
                         Algorithm = formPort.Algorithm;
                         BlinkInterval = formPort.BlinkInterval / 10;
+                        Threshold = formPort.Threshold;
 
                         // Open the COM port
                         serialPort = new SerialPort(formPort.SelectedPort);
@@ -441,7 +443,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
               bool boolDreaming = false;
               foreach (Double dblValue in m_arrHistory)
               {
-                if (dblValue > 600)
+                if (dblValue > Device.Threshold)
                 {
                   intAbove += 1;
                   intBelow = 0;

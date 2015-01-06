@@ -17,6 +17,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         public String SelectedPort = "";
         public int Channels = 2;
         public String Algorithm = "REM Detection";
+        public int Threshold = 600;
         public int BlinkInterval = 280;
 
         private Boolean loaded = false;
@@ -83,6 +84,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
             defaultSettings += "<Plugin>";
             defaultSettings += "<Channels>2</Channels>";
             defaultSettings += "<Algorithm>REM Detection</Algorithm>";
+            defaultSettings += "<Threshold>600</Threshold>";
             defaultSettings += "<BlinkInterval>280</BlinkInterval>";
             defaultSettings += "</Plugin>";
             defaultSettings += "</LucidScribeData>";
@@ -106,6 +108,14 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           else
           {
             cmbBlinkInterval.Text = "280";
+          }
+          if (xmlSettings.DocumentElement.SelectSingleNode("//Threshold") != null)
+          {
+            txtThreshold.Text = xmlSettings.DocumentElement.SelectSingleNode("//Threshold").InnerText;
+          }
+          else
+          {
+            txtThreshold.Text = "600";
           }
         }
 
@@ -136,6 +146,7 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
           defaultSettings += "<Plugin>";
           defaultSettings += "<Channels>" + cmbChannels.Text + "</Channels>";
           defaultSettings += "<Algorithm>" + cmbAlgorithm.Text + "</Algorithm>";
+          defaultSettings += "<Threshold>" + txtThreshold.Text + "</Threshold>";
           defaultSettings += "<BlinkInterval>" + cmbBlinkInterval.Text + "</BlinkInterval>";
           defaultSettings += "</Plugin>";
           defaultSettings += "</LucidScribeData>";
@@ -167,6 +178,13 @@ namespace lucidcode.LucidScribe.Plugin.OpenEEG
         private void mnuRefresh_Click(object sender, EventArgs e)
         {
           LoadPortList();
+        }
+
+        private void txtThreshold_TextChanged(object sender, EventArgs e)
+        {
+          if (!loaded) { return; }
+          Threshold = Convert.ToInt32(txtThreshold.Text);
+          SaveSettings();
         }
 
     }
