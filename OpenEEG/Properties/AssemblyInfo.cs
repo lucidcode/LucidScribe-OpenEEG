@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("lucidcode")]
 [assembly: AssemblyProduct("Plugin.OpenEEG")]
-[assembly: AssemblyCopyright("Copyright © lucidcode 2013 - 2015")]
+[assembly: AssemblyCopyright("Copyright © lucidcode 2013 - 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
