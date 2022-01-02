@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenEEG", "OpenEEG\OpenEEG.csproj", "{B7116A52-33CE-44EF-B1EB-9D327B734BBB}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LucidScribe.OpenEEG", "Installer\Lucid Scribe OpenEEG.vdproj", "{EA1D9E78-7A71-45BF-83F8-10D66E5AC9CA}"
